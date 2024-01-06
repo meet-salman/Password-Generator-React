@@ -10,6 +10,7 @@ function App() {
   const [lowerCase, setLower] = useState(true);
   const [number, setNumber] = useState(false);
   const [symbol, setSymbol] = useState(false);
+  const [tooltip, setTooltip] = useState('Copy');
 
 
   useEffect(() => {
@@ -103,6 +104,12 @@ function App() {
   }
 
 
+  function copyPassword() {
+    navigator.clipboard.writeText(password);
+    setTooltip('Copied!')
+  }
+
+
   return (
     <>
 
@@ -120,8 +127,9 @@ function App() {
 
           <div className='w-[55%]'>
 
-            <div className='flex justify-center '>
-              <div className='flex items-center justify-between w-[60%] py-3 px-5 border-2	border-[#e2e2e2] rounded-full'>
+            <div className='flex justify-center items-center gap-5'>
+              <div className='flex items-center justify-between w-[60%] py-3 px-5 border-2	border-[#e2e2e2] rounded-full shadow-[#0000002d] shadow-lg '>
+
                 <p> {password} </p>
 
                 <div className='flex gap-5'>
@@ -130,6 +138,11 @@ function App() {
                 </div>
 
               </div>
+
+              <div className='tooltip'>
+                <button onClick={copyPassword} className='py-3 px-5 rounded-full border-2 text-white	border-[#0070f6] bg-[#0070f6] shadow-[#006ff663] shadow-lg	'> <span class="tooltiptext" id="tooltip"> {tooltip} </span> Copy </button>
+              </div>
+
             </div>
 
 
@@ -172,7 +185,6 @@ function App() {
         </div >
 
       </div>
-
 
     </>
   )
