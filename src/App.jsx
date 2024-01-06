@@ -7,7 +7,7 @@ function App() {
   const [strength, setStrength] = useState('');
   const [length, setLength] = useState(8);
   const [upperCase, setUpper] = useState(false);
-  const [lowerCase, setLower] = useState(true);
+  const [lowerCase, setLower] = useState(false);
   const [number, setNumber] = useState(false);
   const [symbol, setSymbol] = useState(false);
   const [tooltip, setTooltip] = useState('Copy');
@@ -24,15 +24,18 @@ function App() {
     // console.log(e.target.checked);
   }
 
+
   function includeLowerCase(e) {
     setLower(e.target.checked);
     // console.log(e.target.checked);
   }
 
+
   function includeNumber(e) {
     setNumber(e.target.checked);
     // console.log(e.target.checked);
   }
+
 
   function includeSymbol(e) {
     setSymbol(e.target.checked);
@@ -114,7 +117,12 @@ function App() {
 
   function copyPassword() {
     navigator.clipboard.writeText(password);
-    setTooltip('Copied!')
+
+    if (password.length > 0) {
+      setTooltip('Copied!')
+    } else {
+      setTooltip('Empty!')
+    }
   }
 
 
@@ -148,7 +156,7 @@ function App() {
               </div>
 
               <div className='tooltip'>
-                <button onClick={copyPassword} className='py-3 px-5 rounded-full border-2 text-white	border-[#0070f6] bg-[#0070f6] shadow-[#006ff663] shadow-lg	'> <span class="tooltiptext" id="tooltip"> {tooltip} </span> Copy </button>
+                <button id='copyBtn' onClick={copyPassword} className='py-3 px-5 rounded-full border-2 text-white	border-[#0070f6] bg-[#0070f6] shadow-[#006ff663] shadow-lg	'> <span class="tooltiptext" id="tooltip"> {tooltip} </span> Copy </button>
               </div>
 
             </div>
