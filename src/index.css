@@ -2,13 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: poppins;
 }
 
-body{
+body {
   text-align: center;
 }
+
+
+
+input[type="range"] {
+  --c: #0070f6;
+  /* active color */
+  --g: 8px;
+  /* the gap */
+  --l: 5px;
+  /* line thickness*/
+  --s: 30px;
+  /* thumb size*/
+
+  width: 400px;
+  height: var(--s);
+  /* needed for Firefox*/
+  --_c: color-mix(in srgb, var(--c), #0061d8 var(--p, 0%));
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+input:focus-visible,
+input:hover {
+  --p: 25%;
+}
+
+input:active,
+input:focus-visible {
+  --_b: var(--s)
+}
+
+/* chromium */
+input[type="range" i]::-webkit-slider-thumb {
+  height: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: 0 0 0 var(--_b, var(--l)) inset var(--_c);
+  border-image: linear-gradient(90deg, var(--_c) 50%, #ababab 0) 1/0 100vw/0 calc(100vw + var(--g));
+  clip-path:
+    polygon(0 calc(50% + var(--l)/2),
+      -100vw calc(50% + var(--l)/2),
+      -100vw calc(50% - var(--l)/2),
+      0 calc(50% - var(--l)/2),
+      0 0, 100% 0,
+      100% calc(50% - var(--l)/2),
+      100vw calc(50% - var(--l)/2),
+      100vw calc(50% + var(--l)/2),
+      100% calc(50% + var(--l)/2),
+      100% 100%, 0 100%);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: .3s;
+}
+
+
+
+
+
+
+
+  .checkbox-wrapper input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+
+  .checkbox-wrapper label {
+    position: relative;
+    padding-left: 2em;
+    padding-right: 1em;
+    line-height: 2;
+    cursor: pointer;
+    display: inline-flex;
+  }
+
+  .checkbox-wrapper label:before {
+    box-sizing: border-box;
+    content: " ";
+    position: absolute;
+    top: 0.3em;
+    left: 0;
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    border: 2px solid #9098A9;
+    border-radius: 6px;
+    z-index: -1;
+  }
+
+  .checkbox-wrapper input[type=checkbox]:checked + label {
+    padding-left: 1em;
+    color: #003677;
+  }
+  .checkbox-wrapper input[type=checkbox]:checked + label:before {
+    top: 0;
+    width: 100%;
+    height: 2em;
+    background: #dcefff;
+    border-color: #0070f6;
+  }
+
+  .checkbox-wrapper label,
+  .checkbox-wrapper label::before {
+    transition: 0.25s all ease;
+  }
