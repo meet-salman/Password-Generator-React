@@ -61,6 +61,10 @@ function App() {
       str += '~!@#$%^&*()_+{}<>?/';
     }
 
+    if (upperCase == false && lowerCase == false && number == false && symbol == false) {
+      setLength(0)
+    }
+
 
     for (let i = 0; i < length; i++) {
 
@@ -80,7 +84,11 @@ function App() {
 
   function checkStrength() {
 
-    if (password.length < 5) {
+    if (password.length === 0) {
+      setStrength('Opps!')
+      strengthStatus.style.backgroundColor = "#fecaca"
+    }
+    else if (password.length > 0 && password.length < 5) {
       setStrength('Week')
       strengthStatus.style.backgroundColor = "#fecaca"
     }
